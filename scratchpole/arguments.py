@@ -53,5 +53,18 @@ parser.add_argument('--dont-delete-gcode',
                     action='store_true',
                     )
 
+parser.add_argument('--output',
+                    metavar='FILE',
+                    type=str,
+                    )
+
+parser.add_argument('--silent',
+                    action='store_true',
+                    )
+
+parser.add_argument('--pretty-print',
+                    action='store_true',
+                    )
+
 
 arguments = parser.parse_args()
