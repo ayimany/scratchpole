@@ -1,9 +1,22 @@
 from dataclasses import dataclass
+from typing import Dict, Any
 
 @dataclass(frozen=True)
 class Interest:
     label: str
     regex: str
+
+def get_nested_interests() -> Dict[str, Any]:
+    nested = {}
+    for key, interest in interests.items():
+        parts = key.split('.')
+        current = nested
+        for part in parts[:-1]:
+            if part not in current:
+                current[part] = {}
+            current = current[part]
+        current[parts[-1]] = interest
+    return nested
 
 interests = {
     'filament.used.mm': Interest('Filament used (mm)', r'; filament used \[mm] = (.*)'),

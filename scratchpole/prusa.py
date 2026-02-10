@@ -29,11 +29,6 @@ def read_gcode(filename):
 
 
 def clean_gcode(filename):
-    """
-    Optimized reading of G-code metadata.
-    PrusaSlicer stores its configuration and summary at the end of the file.
-    Instead of reading the entire file, we read the header and the footer.
-    """
     header_size = 4096  # 4KB for header comments
     footer_size = 65536 # 64KB for footer metadata
 

@@ -1,9 +1,9 @@
 import logging
 import re
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
-from scratchpole.available_interests import interests, Interest
+from scratchpole.available_interests import interests, Interest, get_nested_interests
 
 
 def parse_prusa_time(time_str: str) -> int:
@@ -69,4 +69,17 @@ def find_interest(key: str, gcode: str, time_format: str = 'full') -> Optional[E
 
     logging.warning(f'Could not find interest {key} within the parsed gcode')
     return None
+
+
+def extract_interests(gcode: str, requested_keys: List[str] = None, time_format: str = 'full') -> List[ExtractedInterest]:
+    """Extracts a list of interests from the gcode."""
+    if requested_keys is None:
+        requested_keys = list(interests.keys())
+    
+    results = []
+    for key in requested_keys:
+        interest = find_interest(key, gcode, time_format)
+        if interest:
+            results.append(interest)
+    return results
 
