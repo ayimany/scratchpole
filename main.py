@@ -17,8 +17,8 @@ def main():
 
     interests = [find_interest(interest, data) for interest in arguments.interests]
 
-    if arguments.output is not None:
-        export_file(interests, arguments.output)
+    if arguments.export is not None:
+        export_file(interests, arguments.export)
 
     if not arguments.silent:
         if arguments.pretty_print:

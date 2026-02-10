@@ -53,7 +53,7 @@ parser.add_argument('--dont-delete-gcode',
                     action='store_true',
                     )
 
-parser.add_argument('--output',
+parser.add_argument('--export',
                     metavar='FILE',
                     type=str,
                     )
