@@ -16,7 +16,5 @@ def export_json(interests, filename):
                 inmap[key] = {}
             inmap = inmap[key]
         inmap[keys[-1]] = interest.value
-    print(mapped_interests)
-
 
     json.dump(mapped_interests, open(filename, 'w'))
