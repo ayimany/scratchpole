@@ -1,5 +1,6 @@
 import logging
 import os
+
 from scratchpost import (
     arguments,
     extract_interests,
@@ -11,6 +12,20 @@ from scratchpost import (
 
 
 def main():
+    has_non_existent_files = False
+
+    if not os.path.exists(arguments.file):
+        logging.error(f"File {arguments.file} does not exist")
+        has_non_existent_files = True
+
+    for path in arguments.settings:
+        if not os.path.exists(path):
+            logging.error(f"File {path} does not exist")
+            has_non_existent_files = True
+
+    if has_non_existent_files:
+        exit(1)
+
     command = build_command(arguments)
     run_command(command, arguments.debug)
     data = clean_gcode(arguments.gcode_output)
