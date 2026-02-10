@@ -14,7 +14,7 @@ def main():
     command = build_command(arguments)
     run_command(command, arguments.debug)
     data = clean_gcode(arguments.gcode_output)
-    
+
     extracted = extract_interests(data, arguments.interests, arguments.time_format)
 
     if arguments.export is not None:
@@ -31,7 +31,6 @@ def main():
     # Cleanup
     if not arguments.dont_delete_gcode:
         os.remove(arguments.gcode_output)
-
 
 
 if __name__ == '__main__':
